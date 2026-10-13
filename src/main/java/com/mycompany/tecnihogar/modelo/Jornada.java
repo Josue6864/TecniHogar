@@ -28,6 +28,9 @@ public class Jornada {
         this.numero = numero;
         this.cuadrilla = cuadrilla;
         this.ordenes = new ArrayList<>();
+        /*crea un mapa vacio para que llava deduzca los tipos de lado izquierdo lo que son OrdenServicio, ResultadoVisita
+        y lo guarda vacio en el atributo resultados.
+        */
         this.resultados = new LinkedHashMap<>();
         this.estado = EstadoJornada.EN_PREPARACION;
     }
@@ -153,10 +156,6 @@ public class Jornada {
 
     public List<OrdenServicio> getOrdenes() {
         return Collections.unmodifiableList(new ArrayList<>(ordenes));
-    }
-
-    public Map<OrdenServicio, ResultadoVisita> getResultados() {
-        return Collections.unmodifiableMap(new LinkedHashMap<>(resultados));
     }
 
     public EstadoJornada getEstado() {
