@@ -12,7 +12,7 @@ public class Diagnostico extends OrdenServicio {
 
         if (horasEstimadas > HORAS_MAXIMAS) {
             throw new IllegalArgumentException(
-                    "Un diagnóstico no puede superar 1.5 horas estimadas.");
+                    "Un diagnostico no puede superar 1.5 horas estimadas.");
         }
     }
 
@@ -34,7 +34,7 @@ public class Diagnostico extends OrdenServicio {
 
     @Override
     public String getCategoria() {
-        return "Diagnóstico";
+        return "Diagnostico";
     }
 }
 
