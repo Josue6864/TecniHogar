@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
-
 public class Jornada {
 
     private final int numero;
@@ -30,7 +28,7 @@ public class Jornada {
         this.ordenes = new ArrayList<>();
         /*crea un mapa vacio para que llava deduzca los tipos de lado izquierdo lo que son OrdenServicio, ResultadoVisita
         y lo guarda vacio en el atributo resultados.
-        */
+         */
         this.resultados = new LinkedHashMap<>();
         this.estado = EstadoJornada.EN_PREPARACION;
     }
@@ -53,7 +51,15 @@ public class Jornada {
         BigDecimal nuevasHoras = sumarHorasAsignadas()
                 .add(BigDecimal.valueOf(orden.getHorasEstimadas()));
         if (nuevasHoras.compareTo(BigDecimal.valueOf(cuadrilla.getCapacidadHoras())) > 0) {
-            throw new IllegalArgumentException("La orden supera la capacidad disponible.");
+            throw new IllegalArgumentException(
+                    String.format(
+                            Locale.ROOT,
+                            "La orden requiere %.2f horas, pero la jornada "
+                            + "solo tiene %.2f horas disponibles.",
+                            orden.getHorasEstimadas(),
+                            getCapacidadDisponible()
+                    )
+            );
         }
 
         // Todas las validaciones se hacen antes de modificar la jornada.
